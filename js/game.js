@@ -5,7 +5,8 @@
 import { getDirection, resetDirection } from './controls.js';
 import { drawSnake, moveSnake, growSnake, resetSnake, getSnakeHead, getSnakeBody } from './snake.js';
 import { getFoodPosition, placeFood } from './food.js';
-import { boardSize, initialSpeed, minSpeed } from './config.js';
+import { tileSize, getBoardSize, initialSpeed, minSpeed } from './config.js';
+
 
 let intervalId;
 let speed = initialSpeed;
@@ -30,10 +31,14 @@ function updateScore() {
 // ===============================
 function checkCollision(head) {
   // Contra bordes
-  if (
-    head.x < 0 || head.y < 0 ||
-    head.x >= boardSize || head.y >= boardSize
-  ) {
+  const boardSize = getBoardSize();
+if (
+  head.x < 0 ||
+  head.y < 0 ||
+  head.x >= boardSize ||
+  head.y >= boardSize
+)
+ {
     endGame('¡Game Over! Tocaste el borde.');
     return true;
   }
