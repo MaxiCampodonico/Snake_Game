@@ -2,8 +2,10 @@
 
 /* Contenedor principal del juego (tablero) */
 #game-board {
-  width: 320px;
-  height: 320px;
+  /* CAMBIO IMPORTANTE: Ajustar el ancho y alto total para que el clientWidth/clientHeight sea un múltiplo de 20px */
+  /* Deseamos un clientWidth de 320px (16 tiles * 20px/tile). Con bordes de 4px (total 8px), el ancho total debe ser 320 + 8 = 328px. */
+  width: 328px;
+  height: 328px;
   margin: 20px auto;
   position: relative;
   border: 4px solid #fff;
@@ -34,32 +36,18 @@
 /* Botón de reinicio */
 #restart-btn {
   padding: 10px 20px;
-  font-size: 18px;
   margin-top: 15px;
+  font-size: 18px;
   cursor: pointer;
-  background-color: transparent;
-  color: #00ffea;
-  border: 2px solid #00ffea;
+  background-color: #0ff;
+  color: #000;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 0 10px #00ffea;
-  transition: all 0.3s ease;
+  box-shadow: 0 0 8px #0ff;
+  transition: transform 0.1s;
 }
 
 #restart-btn:hover {
-  background-color: #00ffea;
-  color: #000;
-  box-shadow: 0 0 20px #00ffea;
-}
-
-/* Estilos para la víbora y comida */
-.snake,
-.food {
-  position: absolute;
-  background-color: #0ff; /* víbora azul celeste */
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.food {
-  background-color: #ff0066; /* comida rosa */
+  transform: scale(1.05);
+  box-shadow: 0 0 16px #0ff;
 }
