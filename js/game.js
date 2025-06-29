@@ -20,28 +20,23 @@ function updateScore() {
 }
 
 function checkCollision(head) {
-  // CAMBIO CLAVE: Usamos clientWidth/clientHeight para obtener el tamaño del área de contenido del tablero
-  // Esto excluye los bordes, asegurando que la lógica de colisión se base en el espacio real de movimiento.
-  const boardWidth = board.clientWidth;   // Ancho del área de contenido del tablero
-  const boardHeight = board.clientHeight; // Alto del área de contenido del tablero
+  const boardWidth = board.clientWidth;   // Ancho del área de contenido del tablero (sin bordes)
+  const boardHeight = board.clientHeight; // Alto del área de contenido del tablero (sin bordes)
   const currentTileSize = getActualTileSize(); // Obtener el tamaño real del tile (segmento de la víbora)
 
   // Lógica de colisión con los bordes
   // head.x y head.y son las coordenadas de la esquina superior izquierda del segmento de la cabeza.
   // El segmento ocupa un espacio de 'currentTileSize' por 'currentTileSize'.
-  // Para que la víbora esté completamente dentro del tablero, su esquina inferior/derecha
-  // no debe exceder los límites del tablero.
+  // Los límites válidos para la esquina superior izquierda del segmento son:
+  // Desde 0 hasta (boardWidth - currentTileSize) para X (inclusive)
+  // Desde 0 hasta (boardHeight - currentTileSize) para Y (inclusive)
   if (
-    head.x < 0 || // Colisión con borde izquierdo (la cabeza se fue a la izquierda del 0)
-    head.y < 0 || // Colisión con borde superior (la cabeza se fue arriba del 0)
-    // Colisión con borde derecho:
-    // Si la coordenada izquierda de la cabeza + el tamaño del tile es MAYOR que el ancho del tablero
-    // significa que la víbora se ha salido por la derecha.
-    head.x + currentTileSize > boardWidth ||
-    // Colisión con borde inferior:
-    // Si la coordenada superior de la cabeza + el tamaño del tile es MAYOR que el alto del tablero
-    // significa que la víbora se ha salido por abajo.
-    head.y + currentTileSize > boardHeight
+    head.x < 0 || // Colisión con borde izquierdo (si la coordenada X es negativa)
+    head.y < 0 || // Colisión con borde superior (si la coordenada Y es negativa)
+    // CAMBIO: Colisión con borde derecho e inferior.
+    // Si head.x es igual o mayor que la última posición donde el tile completo puede caber.
+    head.x >= boardWidth - currentTileSize ||
+    head.y >= boardHeight - currentTileSize
   ) {
     endGame('¡Game Over! Tocaste el borde.');
     return true;
