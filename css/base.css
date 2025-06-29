@@ -1,3 +1,6 @@
+/* base.css */
+
+/* Fondo general */
 body {
   background-color: #0a0a0a;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -7,6 +10,7 @@ body {
   color: #0ff;
 }
 
+/* Título del juego */
 h1 {
   color: #0ff;
   font-size: 40px;
@@ -14,6 +18,7 @@ h1 {
   text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
 }
 
+/* Marcador de puntos */
 #score {
   font-size: 24px;
   color: #fff;

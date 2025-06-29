@@ -1,8 +1,10 @@
+// food.js
+
 // ===============================
 // MÓDULO DE LA COMIDA
 // ===============================
 
-import { tileSize, boardSize } from './config.js';
+import { tileSize, boardSize } from './config.js'; // CAMBIO: Importamos 'boardSize' directamente
 import { getSnakeBody } from './snake.js'; // Importamos la víbora
 
 const food = document.getElementById('food');
@@ -12,7 +14,7 @@ let foodPosition = { x: 0, y: 0 };
 // POSICIÓN ALEATORIA VÁLIDA
 // ===============================
 function getRandomPosition() {
-  const maxTiles = boardSize / tileSize;
+  const maxTiles = boardSize / tileSize; // CAMBIO: Usamos 'boardSize' directamente
   const snakeBody = getSnakeBody();
 
   let newPos;

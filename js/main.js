@@ -1,14 +1,15 @@
+// main.js
+
 import { initGame } from './game.js';
 import { setupControls } from './controls.js';
-import { applyBoardSizeToElement } from './config.js';
+// CAMBIO: Eliminamos la importación de applyBoardSizeToElement
 
 window.addEventListener('DOMContentLoaded', () => {
-  applyBoardSizeToElement(); // Establece el tamaño del tablero al iniciar
+  // CAMBIO: Eliminamos la llamada a applyBoardSizeToElement()
   setupControls();
   initGame();
 });
 
 window.addEventListener('resize', () => {
-  applyBoardSizeToElement();
+  // CAMBIO: Eliminamos la llamada a applyBoardSizeToElement()
 });
-
