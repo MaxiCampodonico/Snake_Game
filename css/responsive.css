@@ -1,0 +1,36 @@
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  #score {
+    font-size: 20px;
+  }
+
+  #game-board {
+    width: 90vw;
+    height: 90vw;
+    border-width: 3px;
+  }
+
+  .snake,
+  .food {
+    width: calc(90vw / 20);
+    height: calc(90vw / 20);
+  }
+
+  #game-over-msg {
+    width: 90%;
+    font-size: 20px;
+    padding: 16px;
+  }
+
+  #restart-btn {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}

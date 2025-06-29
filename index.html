@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/mobile-controls.css" />
+  </head>
+  <body>
+    <h1>Snake Game</h1>
+    <div id="score">Puntos: 0</div>
+    <div id="game-board">
+      <div class="food" id="food"></div>
+    </div>
+    <!-- Cartel de Game Over con botón -->
+    <div id="game-over-msg">
+      <p id="game-over-text">¡Game Over!</p>
+      <button id="restart-btn">Reiniciar</button>
+    </div>
+    <!-- Controles táctiles para móviles -->
+    <div id="mobile-controls">
+      <div class="row">
+        <button class="control-btn" id="up-btn">▲</button>
+      </div>
+      <div class="row">
+        <button class="control-btn" id="left-btn">◀</button>
+        <button class="control-btn" id="down-btn">▼</button>
+        <button class="control-btn" id="right-btn">▶</button>
+      </div>
+    </div>
+    <!-- Lista de los Script -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

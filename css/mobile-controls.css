@@ -1,0 +1,34 @@
+#mobile-controls {
+  display: none;
+  margin-top: 20px;
+}
+
+#mobile-controls .row {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  border: none;
+  border-radius: 12px;
+  background-color: #0ff;
+  color: #000;
+  box-shadow: 0 0 10px #0ff;
+  margin: 0 10px;
+  transition: transform 0.1s;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 20px #0ff;
+}
+
+@media (max-width: 480px) {
+  #mobile-controls {
+    display: block;
+  }
+}
