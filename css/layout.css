@@ -36,7 +36,10 @@
 /* Botón de reinicio */
 #restart-btn {
   padding: 10px 20px;
-  margin-top: 15px;
+  /* CAMBIO: Se mantiene el margin-top para separación */
+  /* CAMBIO: Se añaden display: block y margin: auto para centrar horizontalmente */
+  display: block; /* Asegura que el botón se comporte como un bloque */
+  margin: 15px auto 0 auto; /* 15px arriba, auto a los lados para centrar, 0 abajo */
   font-size: 18px;
   cursor: pointer;
   background-color: #0ff;
