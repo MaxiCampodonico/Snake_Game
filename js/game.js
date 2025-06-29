@@ -24,19 +24,19 @@ function checkCollision(head) {
   const boardHeight = board.clientHeight; // Alto del área de contenido del tablero (sin bordes)
   const currentTileSize = getActualTileSize(); // Obtener el tamaño real del tile (segmento de la víbora)
 
+  // CALCULO CLAVE: Redondear las dimensiones del tablero al múltiplo más cercano del tamaño del tile.
+  // Esto asegura que los límites de colisión se alineen perfectamente con la cuadrícula de movimiento de la víbora.
+  const effectiveBoardWidth = Math.floor(boardWidth / currentTileSize) * currentTileSize;
+  const effectiveBoardHeight = Math.floor(boardHeight / currentTileSize) * currentTileSize;
+
   // Lógica de colisión con los bordes
-  // head.x y head.y son las coordenadas de la esquina superior izquierda del segmento de la cabeza.
-  // El segmento ocupa un espacio de 'currentTileSize' por 'currentTileSize'.
-  // Los límites válidos para la esquina superior izquierda del segmento son:
-  // Desde 0 hasta (boardWidth - currentTileSize) para X (inclusive)
-  // Desde 0 hasta (boardHeight - currentTileSize) para Y (inclusive)
+  // La víbora colisiona si su coordenada de inicio (arriba-izquierda) es menor que 0
+  // o si es igual o mayor que el límite efectivo del tablero.
   if (
-    head.x < 0 || // Colisión con borde izquierdo (si la coordenada X es negativa)
-    head.y < 0 || // Colisión con borde superior (si la coordenada Y es negativa)
-    // CAMBIO: Colisión con borde derecho e inferior.
-    // Si head.x es igual o mayor que la última posición donde el tile completo puede caber.
-    head.x >= boardWidth - currentTileSize ||
-    head.y >= boardHeight - currentTileSize
+    head.x < 0 || // Colisión con borde izquierdo
+    head.y < 0 || // Colisión con borde superior
+    head.x >= effectiveBoardWidth || // Colisión con borde derecho
+    head.y >= effectiveBoardHeight // Colisión con borde inferior
   ) {
     endGame('¡Game Over! Tocaste el borde.');
     return true;
