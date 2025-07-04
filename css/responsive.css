@@ -19,15 +19,27 @@
   }
 
   #game-board {
-    width: 90vmin;
-    height: 90vmin;
-    border-width: 3px;
+    /* CAMBIO CLAVE: Usar dimensiones fijas que sean múltiplos exactos de 20 */
+    /* Para pantallas pequeñas, usar 300x300 (15x15 tiles) */
+    width: 308px; /* 300px + 8px de bordes (4px cada lado) */
+    height: 308px; /* 300px + 8px de bordes (4px cada lado) */
+    border-width: 4px;
+
+    /* Centrar el tablero en pantallas pequeñas */
+    margin: 10px auto;
+
+    /* Asegurar que se mantenga el tamaño fijo */
+    min-width: 308px;
+    min-height: 308px;
+    max-width: 308px;
+    max-height: 308px;
   }
 
   .snake,
   .food {
-    width: calc(90vmin / 20);
-    height: calc(90vmin / 20);
+    /* CAMBIO CLAVE: Mantener el tamaño fijo de 20px */
+    width: 20px !important;
+    height: 20px !important;
   }
 
   #game-over-msg {
@@ -45,5 +57,26 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+  }
+}
+
+/* Para pantallas muy pequeñas (menos de 350px) */
+@media (max-width: 350px) {
+  #game-board {
+    /* Para pantallas muy pequeñas, usar 260x260 (13x13 tiles) */
+    width: 268px; /* 260px + 8px de bordes */
+    height: 268px; /* 260px + 8px de bordes */
+    min-width: 268px;
+    min-height: 268px;
+    max-width: 268px;
+    max-height: 268px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  #score {
+    font-size: 16px;
   }
 }

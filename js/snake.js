@@ -16,17 +16,37 @@ let snake = []; // Se inicializará correctamente con resetSnake()
 // FUNCIÓN PARA OBTENER EL TAMAÑO REAL DEL TILE RENDERIZADO
 // ===============================
 export function getActualTileSize() {
-  // Obtenemos el tamaño de un elemento .snake o .food, ya que siempre deberían tener el mismo tamaño
-  // y reflejar el tamaño renderizado actual del CSS (20px en PC, calc(90vmin / 20) en móvil).
-  // Creamos un elemento temporal para evitar leer el tamaño de un elemento que pueda estar oculto o afectado.
+  // CAMBIO: Usar un enfoque más robusto para obtener el tamaño del tile
+  // Verificar si estamos en móvil basándose en el ancho de ventana
+  const isMobile = window.innerWidth <= 768;
+  
+  if (isMobile) {
+    // En móviles, usar siempre 20px fijo para consistencia
+    return 20;
+  } else {
+    // En desktop, usar el tamaño configurado (también 20px)
+    return 20;
+  }
+}
+
+// ===============================
+// FUNCIÓN ALTERNATIVA MÁS ROBUSTA (por si necesitas detección automática)
+// ===============================
+function getActualTileSizeFromDOM() {
   const tempElement = document.createElement('div');
-  tempElement.classList.add('snake'); // Usamos la clase 'snake' para obtener su tamaño CSS
-  tempElement.style.visibility = 'hidden'; // No queremos que este elemento sea visible
-  tempElement.style.position = 'absolute'; // Aseguramos que no afecte el layout
+  tempElement.classList.add('snake');
+  tempElement.style.visibility = 'hidden';
+  tempElement.style.position = 'absolute';
   board.appendChild(tempElement);
-  const actualSize = tempElement.offsetWidth; // offsetWidth nos da el tamaño calculado en píxeles
-  tempElement.remove(); // Limpiar el elemento temporal después de obtener su tamaño
-  return actualSize;
+  
+  let actualSize = tempElement.offsetWidth;
+  tempElement.remove();
+  
+  // CAMBIO CLAVE: Redondear al entero más cercano para evitar decimales
+  actualSize = Math.round(actualSize);
+  
+  // Asegurar que sea al menos 15px (para pantallas muy pequeñas)
+  return Math.max(15, actualSize);
 }
 
 // ===============================
